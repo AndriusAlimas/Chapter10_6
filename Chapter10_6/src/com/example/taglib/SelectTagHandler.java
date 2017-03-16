@@ -7,7 +7,7 @@ import java.util.List;
 
 public class SelectTagHandler extends SimpleTagSupport{
 	// store the 'optionList' attribute:
-	private List optionList;
+	private List optionList = null;
 	// setter:
 	public void setOptionList(List optionList){
 		this.optionList = optionList;
@@ -34,9 +34,7 @@ public class SelectTagHandler extends SimpleTagSupport{
 		
 		// start the HTML <select> tag with HTML-specific attributes:
 		// The HTML <select> open tag uses the name and size attributes:
-		out.println("<p>Select beer characteristic</p>");
-		out.println("Color:");
-		out.print("<select");
+		out.print("<select ");
 		out.print(String.format(ATTR_TEMPLATE, "name",this.name));
 		out.print(String.format(ATTR_TEMPLATE, "size",this.size));
 		out.println(">");
@@ -46,6 +44,10 @@ public class SelectTagHandler extends SimpleTagSupport{
 			String optionTag = String.format(OPTION_TEMPLATE, option.toString());
 			out.println(optionTag);
 		}
+		
+		// End the HTML </select> tag
+		out.println(" </select>");
+		
 	} // END of doTag() method
 	
 	// Our implementation used a few String constants to make the code more readable:
